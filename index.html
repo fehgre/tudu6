@@ -3576,29 +3576,9 @@
   font-weight: bold;
   z-index: 10;
 }
-#intro-screen {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #000;
-  z-index: 10000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-#intro-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
   </style>
 </head>
 <body>
-
-
   <!-- Главная страница -->
   <div id="main-page" class="main-page">
     <!-- Вкладки сверху -->
@@ -4149,85 +4129,86 @@
 </div>
 
 
-<!-- ===== Страница пополнения ===== -->
-<div id="payment-page" class="payment-page">
-  <div class="payment-container">
-    <div class="payment-header">
-      <h1 class="payment-title">Пополнение баланса</h1>
-      <div class="balance-row">
-        <span>Текущий баланс:</span>
-        <span id="balance">0 P</span>
+<!-- Страница пополнения -->
+  <div id="payment-page" class="payment-page">
+    <div class="payment-container">
+      <div class="payment-header">
+        <h1 class="payment-title">Пополнение баланса</h1>
       </div>
+
+      <div class="payment-carousel-wrap">
+        <div class="payment-carousel" id="payment-cards">
+          <!-- Карты будут добавлены через JavaScript -->
+        </div>
+      </div>
+
+      <div class="payment-controls">
+        <button class="payment-btn" onclick="addNewCard()">+ Добавить карту</button>
+        <button class="payment-btn" onclick="showPaymentModal()">Другие способы</button>
+      </div>
+
+      <div class="payment-panel">
+        <div class="payment-row">
+          <span class="payment-label">Сумма пополнения</span>
+          <span class="payment-big" id="payment-amount">0 P</span>
+        </div>
+        
+        <div class="payment-form-row">
+          <input type="number" class="payment-input" id="amount-input" placeholder="Введите сумму" min="10" step="10">
+          <button class="payment-voice-input-btn" onclick="startVoiceInput()">🎤</button>
+        </div>
+
+        <div class="payment-quick-amounts">
+          <button class="payment-btn" onclick="setAmount(100)">100 P</button>
+          <button class="payment-btn" onclick="setAmount(500)">500 P</button>
+          <button class="payment-btn" onclick="setAmount(1000)">1000 P</button>
+          <button class="payment-btn" onclick="setAmount(5000)">5000 P</button>
+        </div>
+
+        <div class="payment-row">
+          <span class="payment-label">Комиссия</span>
+          <span class="payment-big" id="commission">3%</span>
+        </div>
+        <div class="payment-row">
+          <span class="payment-label">Итого к зачислению</span>
+          <span class="payment-big" id="net-amount">0 P</span>
+        </div>
+      </div>
+
+      <button class="payment-pay" onclick="processPayment()">Пополнить</button>
     </div>
-
-    <!-- Карусель карт -->
-    <div class="payment-carousel-wrap">
-      <div class="payment-carousel" id="payment-cards"></div>
-    </div>
-
-    <div class="payment-controls">
-      <button class="payment-btn" onclick="addNewCard()">+ Добавить карту</button>
-      <button class="payment-btn" onclick="showPaymentModal()">Другие способы</button>
-    </div>
-
-    <!-- Панель пополнения -->
-    <div class="payment-panel">
-      <div class="payment-row">
-        <span class="payment-label">Сумма пополнения</span>
-        <span class="payment-big" id="payment-amount">0 P</span>
-      </div>
-
-      <div class="payment-form-row">
-        <input type="number" class="payment-input" id="amount-input" placeholder="Введите сумму" min="10" step="10" oninput="updateAmount()">
-      </div>
-
-      <div class="payment-quick-amounts">
-        <button class="payment-btn" onclick="setAmount(100)">100 P</button>
-        <button class="payment-btn" onclick="setAmount(500)">500 P</button>
-        <button class="payment-btn" onclick="setAmount(1000)">1000 P</button>
-        <button class="payment-btn" onclick="setAmount(5000)">5000 P</button>
-      </div>
-
-      <div class="payment-row">
-        <span class="payment-label">Комиссия</span>
-        <span class="payment-big" id="commission">3%</span>
-      </div>
-      <div class="payment-row">
-        <span class="payment-label">Итого к зачислению</span>
-        <span class="payment-big" id="net-amount">0 P</span>
-      </div>
-    </div>
-
-    <button class="payment-pay" onclick="processPayment()">Пополнить</button>
   </div>
-</div>
 
-<!-- Модалки -->
-<div class="payment-modal" id="payment-modal">
-  <div class="payment-modal-content">
-    <h2>Другие способы оплаты</h2>
-    <div class="payment-form-grid">
-      <button class="payment-btn" onclick="selectPaymentMethod('qiwi')">QIWI</button>
-      <button class="payment-btn" onclick="selectPaymentMethod('yoomoney')">ЮMoney</button>
-      <button class="payment-btn" onclick="selectPaymentMethod('cryptocurrency')">Криптовалюта</button>
-      <button class="payment-btn" onclick="selectPaymentMethod('bank')">Банковский перевод</button>
+  <!-- Модальное окно оплаты -->
+  <div class="payment-modal" id="payment-modal">
+    <div class="payment-modal-content">
+      <h2>Другие способы оплаты</h2>
+      <div class="payment-form-grid">
+        <button class="payment-btn" onclick="selectPaymentMethod('qiwi')">QIWI</button>
+        <button class="payment-btn" onclick="selectPaymentMethod('yoomoney')">ЮMoney</button>
+        <button class="payment-btn" onclick="selectPaymentMethod('cryptocurrency')">Криптовалюта</button>
+        <button class="payment-btn" onclick="selectPaymentMethod('bank')">Банковский перевод</button>
+      </div>
+      <button class="payment-btn" style="margin-top: 15px;" onclick="hidePaymentModal()">Отмена</button>
     </div>
-    <button class="payment-btn" style="margin-top: 15px;" onclick="hidePaymentModal()">Отмена</button>
   </div>
-</div>
 
+<!-- Модальное окно для добавления карты -->
 <div id="card-modal" class="payment-modal">
   <div class="payment-modal-content">
     <h2>Добавить банковскую карту</h2>
+    
     <div class="payment-form-row">
       <label class="payment-form-label">Номер карты</label>
-      <input type="text" class="payment-form-input" id="cardNumberInput" placeholder="1234 5678 9012 3456" maxlength="19" oninput="detectCardBrand()">
+      <input type="text" class="payment-form-input" id="cardNumberInput" placeholder="1234 5678 9012 3456" maxlength="19">
       <div id="cardBrand" class="payment-auto-brand"></div>
     </div>
+    
     <div class="payment-form-row">
       <label class="payment-form-label">Имя держателя</label>
       <input type="text" class="payment-form-input card-holder-input" id="cardHolderInput" placeholder="IVAN IVANOV">
     </div>
+    
     <div class="payment-form-grid">
       <div class="payment-form-row">
         <label class="payment-form-label">Срок действия</label>
@@ -4238,16 +4219,20 @@
         <input type="password" class="payment-form-input" id="cardCvcInput" placeholder="123" maxlength="4" inputmode="numeric">
       </div>
     </div>
+    
     <div class="payment-form-row">
       <button class="payment-btn" id="deleteCardBtn" style="background: rgba(255,59,48,.1); color: #ff3b30; display: none;">Удалить карту</button>
     </div>
+    
     <div class="payment-form-row">
-      <button class="payment-pay" id="saveCardBtn" onclick="saveCard()">Сохранить карту</button>
+      <button class="payment-pay" id="saveCardBtn">Сохранить карту</button>
     </div>
+    
     <button class="payment-btn" style="margin-top: 10px;" onclick="hideAddCardModal()">Отмена</button>
   </div>
 </div>
 
+<!-- Успешное пополнение -->
 <div id="success-modal" class="payment-modal">
   <div class="payment-modal-content" style="text-align: center;">
     <div class="payment-success-checkmark"></div>
@@ -5306,13 +5291,23 @@ function setAmount(amount) {
   triggerVibration();
 }
 
-// ==== СУММА И КОМИССИЯ ====
-function setAmount(value) { document.getElementById('amount-input').value = value; updateAmount(); }
-function updateAmount() {
-  const val = parseFloat(document.getElementById('amount-input').value)||0;
-  document.getElementById('payment-amount').textContent = val+' P';
-  const net = val * 0.97;
-  document.getElementById('net-amount').textContent = net.toFixed(2)+' P';
+// Обновление сумм при изменении ввода
+function updatePaymentAmounts() {
+  const amount = parseFloat(document.getElementById('amount-input').value) || 0;
+  const commissionRate = calculateCommission(amount);
+  const commission = amount * commissionRate;
+  const netAmount = amount - commission;
+  
+  document.getElementById('payment-amount').textContent = `${amount} P`;
+  document.getElementById('commission').textContent = `${(commissionRate * 100).toFixed(1)}%`;
+  document.getElementById('net-amount').textContent = `${netAmount.toFixed(2)} P`;
+}
+
+// Расчет комиссии
+function calculateCommission(amount) {
+  if (amount <= 1000) return 0.03;
+  if (amount <= 5000) return 0.025;
+  return 0.02;
 }
 
 // Голосовой ввод
@@ -5385,45 +5380,34 @@ function selectPaymentMethod(method) {
   // Здесь можно добавить логику для разных способов оплаты
 }
 
-// ==== МОДАЛКИ ====
-function showPaymentModal(){ document.getElementById('payment-modal').classList.add('show'); }
-function hidePaymentModal(){ document.getElementById('payment-modal').classList.remove('show'); }
-function hideSuccessModal(){ document.getElementById('success-modal').classList.remove('show'); }
-
-// ==== ПЛАТЕЖ ЧЕРЕЗ BACKEND ====
-async function processPayment(){
-  const amount = parseFloat(document.getElementById('amount-input').value);
-  if(!amount || amount<=0){ alert('Введите сумму'); return; }
-  if(paymentCards.length===0){ alert('Добавьте карту'); return; }
-
-  const selectedCard = paymentCards[selectedCardIndex];
-  const btn = document.querySelector('.payment-pay'); btn.classList.add('loading');
-
-  try {
-    const resp = await fetch(`${BACKEND_URL}/tinkoff/payment`,{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({ amount: amount, cardId: selectedCard.id })
-    });
-    const result = await resp.json(); btn.classList.remove('loading');
-    if(result.success){
-      document.getElementById('success-amount').textContent = 'Сумма: '+amount+' P';
-      document.getElementById('success-modal').classList.add('show');
-      updateUserBalance(amount);
-    }else{ alert('Ошибка: '+result.message); }
-  }catch(e){ btn.classList.remove('loading'); alert('Ошибка подключения'); console.error(e); }
+// Функции для модального окна карты
+function showCardModal() {
+  document.getElementById('card-modal').classList.add('show');
+  document.getElementById('cardNumberInput').focus();
+  // Очищаем поля при открытии
+  document.getElementById('cardNumberInput').value = '';
+  document.getElementById('cardHolderInput').value = '';
+  document.getElementById('cardExpiryInput').value = '';
+  document.getElementById('cardCvcInput').value = '';
+  document.getElementById('cardBrand').textContent = '';
+  document.getElementById('cardBrand').classList.remove('show');
+  document.getElementById('deleteCardBtn').style.display = 'none';
+  triggerVibration();
 }
 
-function updateUserBalance(amount){
-  const current = parseFloat(localStorage.getItem('userBalance')||'0');
-  const newBal = current+amount; localStorage.setItem('userBalance', newBal.toFixed(2));
-  document.getElementById('balance').textContent = newBal.toFixed(2);
+function hideAddCardModal() {
+  document.getElementById('card-modal').classList.remove('show');
 }
 
+function hideSuccessModal() {
+  document.getElementById('success-modal').classList.remove('show');
+}
 
-// ==== ЗАГРУЗКА СОХРАНЕННЫХ КАРТ ====
-renderCards();
-updateAmount();
+// Обработчики для модального окна карты
+document.getElementById('saveCardBtn').addEventListener('click', saveCard);
+document.getElementById('deleteCardBtn').addEventListener('click', deleteCard);
+document.getElementById('cardNumberInput').addEventListener('input', formatCardNumber);
+document.getElementById('cardExpiryInput').addEventListener('input', formatExpiry);
 
 // Обновите функцию addNewCard
 function addNewCard() {
@@ -7834,6 +7818,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
   
-
 </body>
 </html>
