@@ -3597,14 +3597,7 @@
   </style>
 </head>
 <body>
-<!-- Интро-экран -->
-<div id="intro-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center;">
-  <video id="intro-video" width="100%" height="100%" style="object-fit: cover;" autoplay muted>
-    
-    <source src="https://drive.google.com/uc?export=download&id=1mxAp2t04hhCyHsMKcWJjARjmXL2ARC2b" type="video/mp4">
-    Ваш браузер не поддерживает видео.
-  </video>
-</div>
+
 
   <!-- Главная страница -->
   <div id="main-page" class="main-page">
@@ -7424,105 +7417,6 @@ document.head.appendChild(inCartStyleSheet);
 var swipeStyle = document.createElement('style');
 swipeStyle.textContent = '.cart-item { transition: transform 0.3s ease; position: relative; }';
 document.head.appendChild(swipeStyle);
-
-// Функция для запуска интро
-function startIntro() {
-  const introScreen = document.getElementById('intro-screen');
-  const introVideo = document.getElementById('intro-video');
-  
-  // Если интро-элементов нет, сразу показываем главную страницу
-  if (!introScreen || !introVideo) {
-    showMainContent();
-    return;
-  }
-  
-  // Показываем интро-экран
-  introScreen.style.display = 'flex';
-  
-  // Запускаем вибрацию через 1.05 секунды (как в вашем коде)
-  if (window.Telegram?.WebApp?.HapticFeedback) {
-    setTimeout(() => {
-      const duration = 2000; // эффект длится 2 секунды
-      const endTime = Date.now() + duration;
-
-      (function bubblePop() {
-        if (Date.now() < endTime) {
-          // случайный тип вибрации для эффекта пузырьков
-          const type = Math.random() > 0.5 ? 'light' : 'medium';
-          Telegram.WebApp.HapticFeedback.impactOccurred(type);
-
-          // случайная пауза между пузырьками (30–150мс)
-          const nextDelay = Math.random() * (150 - 30) + 30;
-          setTimeout(bubblePop, nextDelay);
-        }
-      })();
-    }, 1000);
-  }
-  
-  // Обработчик окончания видео
-  introVideo.onended = function() {
-    hideIntroAndShowMain();
-  };
-  
-  // На всякий случай: если видео не загрузится, через 5 секунд покажем главную
-  setTimeout(hideIntroAndShowMain, 5000);
-}
-
-// Функция скрытия интро и показа главного контента
-function hideIntroAndShowMain() {
-  const introScreen = document.getElementById('intro-screen');
-  if (introScreen) {
-    introScreen.style.display = 'none';
-  }
-  showMainContent();
-}
-
-// Функция показа основного контента
-function showMainContent() {
-  // Показываем главную страницу
-  document.getElementById('main-page').style.display = 'block';
-  
-  // Инициализируем приложение как обычно
-  initUserData();
-  initSwipeHandlers();
-  initPaymentPage();
-  
-  // Инициализация склада при загрузке, если он видим
-  if (document.getElementById('storage-page').style.display !== 'none') {
-    initStoragePage();
-  }
-}
-
-// Запускаем интро при загрузке DOM
-document.addEventListener('DOMContentLoaded', function() {
-  // Сначала скрываем все основные страницы
-  const pages = ['main-page', 'cabinet-page', 'treasure-page', 'storage-page', 'payment-page'];
-  pages.forEach(pageId => {
-    const page = document.getElementById(pageId);
-    if (page) page.style.display = 'none';
-  });
-  
-  // Запускаем интро
-  startIntro();
-});
-
-// Добавьте в начало проверку на загрузку из loader
-const urlParams = new URLSearchParams(window.location.search);
-const fromLoader = urlParams.get('fromLoader');
-
-if (!fromLoader) {
-    // Если открыли напрямую, показываем интро
-    document.addEventListener('DOMContentLoaded', initApp);
-} else {
-    // Если перешли из загрузчика, сразу показываем главную
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('intro-screen').style.display = 'none';
-        document.getElementById('main-page').style.display = 'block';
-        initializeApp();
-    });
-}
-
-// Остальной код остается без изменений...
 </script>
 
 <script>
