@@ -7492,33 +7492,38 @@ document.head.appendChild(swipeStyle);
   }
 
   function prepareNextPage(direction) {
-    activePage = getCurrentPage();
-    const main = document.getElementById("main-page");
-    const cab  = document.getElementById("cabinet-page");
-    const stor = document.getElementById("storage-page");
+  activePage = getCurrentPage();
+  const main = document.getElementById("main-page");
+  const cab  = document.getElementById("cabinet-page");
+  const stor = document.getElementById("storage-page");
 
-    // ИЗМЕНЕННАЯ ЛОГИКА СВАЙПОВ:
-    if (activePage.id === "main-page") {
-      // Свайп влево на главной -> переходим в каюту
-      nextPage = (direction === "left") ? cab : stor;
-    } else if (activePage.id === "cabinet-page") {
-      // Свайп вправо в каюте -> возвращаемся на главную
-      nextPage = (direction === "right") ? main : null;
-    } else if (activePage.id === "storage-page") {
-      // Свайп влево на складе -> возвращаемся на главную
-      nextPage = (direction === "left") ? main : null;
-    } else {
-      nextPage = null;
+  // ИСПРАВЛЕННАЯ ЛОГИКА СВАЙПОВ:
+  if (activePage.id === "main-page") {
+    // Свайп влево на главной -> переходим в каюту
+    // Свайп вправо на главной -> переходим в склад
+    if (direction === "left") {
+      nextPage = cab; // свайп влево -> каюта
+    } else if (direction === "right") {
+      nextPage = stor; // свайп вправо -> склад
     }
-
-    if (!nextPage) return;
-
-    nextPage.style.display = "block";
-    nextPage.classList.add("swipeable-page", "no-transition", "pe-none");
-    nextPage.style.transform = (direction === "right") ? "translateX(-100%)" : "translateX(100%)";
-    activePage.classList.add("swipeable-page", "no-transition", "pe-none");
-    activePage.style.transform = "translateX(0)";
+  } else if (activePage.id === "cabinet-page") {
+    // Свайп вправо в каюте -> возвращаемся на главную
+    nextPage = (direction === "right") ? main : null;
+  } else if (activePage.id === "storage-page") {
+    // Свайп влево на складе -> возвращаемся на главную
+    nextPage = (direction === "left") ? main : null;
+  } else {
+    nextPage = null;
   }
+
+  if (!nextPage) return;
+
+  nextPage.style.display = "block";
+  nextPage.classList.add("swipeable-page", "no-transition", "pe-none");
+  nextPage.style.transform = (direction === "right") ? "translateX(-100%)" : "translateX(100%)";
+  activePage.classList.add("swipeable-page", "no-transition", "pe-none");
+  activePage.style.transform = "translateX(0)";
+}
 
   function clearAfterSuccess() {
     if (activePage) {
