@@ -7497,12 +7497,16 @@ document.head.appendChild(swipeStyle);
     const cab  = document.getElementById("cabinet-page");
     const stor = document.getElementById("storage-page");
 
+    // ИЗМЕНЕННАЯ ЛОГИКА СВАЙПОВ:
     if (activePage.id === "main-page") {
-      nextPage = (direction === "right") ? cab : stor;
-    } else if (activePage.id === "cabinet-page" && direction === "left") {
-      nextPage = main;
-    } else if (activePage.id === "storage-page" && direction === "right") {
-      nextPage = main;
+      // Свайп влево на главной -> переходим в каюту
+      nextPage = (direction === "left") ? cab : stor;
+    } else if (activePage.id === "cabinet-page") {
+      // Свайп вправо в каюте -> возвращаемся на главную
+      nextPage = (direction === "right") ? main : null;
+    } else if (activePage.id === "storage-page") {
+      // Свайп влево на складе -> возвращаемся на главную
+      nextPage = (direction === "left") ? main : null;
     } else {
       nextPage = null;
     }
