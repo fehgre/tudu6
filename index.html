@@ -3579,6 +3579,12 @@
   </style>
 </head>
 <body>
+<video id="myVideo" muted loop playsinline>
+    <!-- Источник указывается относительный путь -->
+    <source src="C:/Users/User/Telegram-prodgect/client/video_2025-08-25_00-03-06.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
   <!-- Главная страница -->
   <div id="main-page" class="main-page">
     <!-- Вкладки сверху -->
@@ -3752,66 +3758,68 @@
     </div>
   </div>
 
-  <!-- Нижняя панель навигации -->
-  <div class="bottom-nav">
-    <!-- КАЮТА -->
-    <div class="nav-item" id="cabinet-nav-item">
-      <div style="display: flex; flex-direction: column; align-items: center;">
-        <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <path d="M24 20 Q24 14 32 14 Q40 14 40 20" stroke="currentColor" stroke-width="2" fill="none" />
-          <line x1="24" y1="20" x2="24" y2="30" stroke="currentColor" stroke-width="2" />
-          <line x1="40" y1="20" x2="40" y2="30" stroke="currentColor" stroke-width="2" />
-          <rect x="18" y="30" width="28" height="6" rx="1" stroke="currentColor" stroke-width="2" fill="none" />
-          <line x1="22" y1="36" x2="22" y2="50" stroke="currentColor" stroke-width="2" />
-          <line x1="42" y1="36" x2="42" y2="50" stroke="currentColor" stroke-width="2" />
-          <line x1="28" y1="50" x2="36" y2="50" stroke="currentColor" stroke-width="2" />
-        </svg>
-        <span class="label">Каюта</span>
-      </div>
-    </div>
-
-<!-- КЛАД -->
-    <div class="nav-item" id="treasure-nav-item">
-      <div style="display: flex; flex-direction: column; align-items: center;">
-        <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <rect x="10" y="20" width="44" height="32" rx="8" ry="8" stroke="currentColor" stroke-width="2" fill="none"/>
-          <rect x="10" y="10" width="44" height="14" rx="8" ry="8" stroke="currentColor" stroke-width="2" fill="none"/>
-          <line x1="10" y1="26" x2="54" y2="26" stroke="currentColor" stroke-width="1" />
-          <rect x="30" y="40" width="4" height="10" stroke="currentColor" stroke-width="2" fill="none"/>
-          <circle cx="32" cy="45" r="1.5" fill="currentColor"/>
-          <circle cx="18" cy="22" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
-          <circle cx="26" cy="20" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
-          <circle cx="34" cy="22" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
-          <circle cx="42" cy="20" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
-          <circle cx="50" cy="22" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
-        </svg>
-        <span class="label">Клад</span>
-      </div>
-    </div>
-
-    <!-- СКЛАД -->
-    <div class="nav-item" id="storage-nav-item">
-      <div style="display: flex; flex-direction: column; align-items: center;">
-        <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <ellipse cx="32" cy="12" rx="18" ry="6" stroke="currentColor" stroke-width="2" />
-          <path d="M14 12 v40 a18 6 0 0 0 36 0 v-40" stroke="currentColor" stroke-width="2" fill="none"/>
-          <ellipse cx="32" cy="52" rx="18" ry="6" stroke="currentColor" stroke-width="2" />
-          <line x1="24" y1="12" x2="24" y2="52" stroke="currentColor" stroke-width="2"/>
-          <line x1="40" y1="12" x2="40" y2="52" stroke="currentColor" stroke-width="2"/>
-          <circle cx="32" cy="32" r="4" stroke="currentColor" stroke-width="2"/>
-          <circle cx="30.5" cy="31" r="0.8" fill="currentColor"/>
-          <circle cx="33.5" cy="31" r="0.8" fill="currentColor"/>
-          <path d="M30 34 q2 2 4 0" stroke="currentColor" stroke-width="1" fill="none"/>
-          <line x1="26" y1="26" x2="22" y2="22" stroke="currentColor" stroke-width="2"/>
-          <line x1="26" y1="22" x2="22" y2="26" stroke="currentColor" stroke-width="2"/>
-          <line x1="38" y1="26" x2="42" y2="22" stroke="currentColor" stroke-width="2"/>
-          <line x1="38" y1="22" x2="42" y2="26" stroke="currentColor" stroke-width="2"/>
-        </svg>
-        <span class="label">Склад</span>
-      </div>
+ <!-- Нижняя панель навигации -->
+<div class="bottom-nav">
+  
+  <!-- СКЛАД -->
+  <div class="nav-item" id="storage-nav-item">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <ellipse cx="32" cy="12" rx="18" ry="6" stroke="currentColor" stroke-width="2" />
+        <path d="M14 12 v40 a18 6 0 0 0 36 0 v-40" stroke="currentColor" stroke-width="2" fill="none"/>
+        <ellipse cx="32" cy="52" rx="18" ry="6" stroke="currentColor" stroke-width="2" />
+        <line x1="24" y1="12" x2="24" y2="52" stroke="currentColor" stroke-width="2"/>
+        <line x1="40" y1="12" x2="40" y2="52" stroke="currentColor" stroke-width="2"/>
+        <circle cx="32" cy="32" r="4" stroke="currentColor" stroke-width="2"/>
+        <circle cx="30.5" cy="31" r="0.8" fill="currentColor"/>
+        <circle cx="33.5" cy="31" r="0.8" fill="currentColor"/>
+        <path d="M30 34 q2 2 4 0" stroke="currentColor" stroke-width="1" fill="none"/>
+        <line x1="26" y1="26" x2="22" y2="22" stroke="currentColor" stroke-width="2"/>
+        <line x1="26" y1="22" x2="22" y2="26" stroke="currentColor" stroke-width="2"/>
+        <line x1="38" y1="26" x2="42" y2="22" stroke="currentColor" stroke-width="2"/>
+        <line x1="38" y1="22" x2="42" y2="26" stroke="currentColor" stroke-width="2"/>
+      </svg>
+      <span class="label">Склад</span>
     </div>
   </div>
 
+  <!-- КЛАД -->
+  <div class="nav-item" id="treasure-nav-item">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <rect x="10" y="20" width="44" height="32" rx="8" ry="8" stroke="currentColor" stroke-width="2" fill="none"/>
+        <rect x="10" y="10" width="44" height="14" rx="8" ry="8" stroke="currentColor" stroke-width="2" fill="none"/>
+        <line x1="10" y1="26" x2="54" y2="26" stroke="currentColor" stroke-width="1" />
+        <rect x="30" y="40" width="4" height="10" stroke="currentColor" stroke-width="2" fill="none"/>
+        <circle cx="32" cy="45" r="1.5" fill="currentColor"/>
+        <circle cx="18" cy="22" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
+        <circle cx="26" cy="20" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
+        <circle cx="34" cy="22" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
+        <circle cx="42" cy="20" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
+        <circle cx="50" cy="22" r="3" stroke="currentColor" stroke-width="1" fill="none"/>
+      </svg>
+      <span class="label">Клад</span>
+    </div>
+  </div>
+
+  <!-- КАЮТА -->
+  <div class="nav-item" id="cabinet-nav-item">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <path d="M24 20 Q24 14 32 14 Q40 14 40 20" stroke="currentColor" stroke-width="2" fill="none" />
+        <line x1="24" y1="20" x2="24" y2="30" stroke="currentColor" stroke-width="2" />
+        <line x1="40" y1="20" x2="40" y2="30" stroke="currentColor" stroke-width="2" />
+        <rect x="18" y="30" width="28" height="6" rx="1" stroke="currentColor" stroke-width="2" fill="none" />
+        <line x1="22" y1="36" x2="22" y2="50" stroke="currentColor" stroke-width="2" />
+        <line x1="42" y1="36" x2="42" y2="50" stroke="currentColor" stroke-width="2" />
+        <line x1="28" y1="50" x2="36" y2="50" stroke="currentColor" stroke-width="2" />
+      </svg>
+      <span class="label">Каюта</span>
+    </div>
+  </div>
+
+</div>
+    
 <!-- Страница клада -->
 <div id="treasure-page" class="treasure-page" style="display: none;">
   <div class="treasure-screen">
@@ -7401,6 +7409,13 @@ document.head.appendChild(inCartStyleSheet);
 var swipeStyle = document.createElement('style');
 swipeStyle.textContent = '.cart-item { transition: transform 0.3s ease; position: relative; }';
 document.head.appendChild(swipeStyle);
+
+    // Видео уже доступно сразу, можно проиграть его при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+        const video = document.getElementById('myVideo');
+        video.play().catch(e => console.log("Autoplay was prevented:", e));
+    });
+
 </script>
 
 <script>
