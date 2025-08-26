@@ -3579,12 +3579,6 @@
   </style>
 </head>
 <body>
-<video id="myVideo" muted loop playsinline>
-    <!-- Источник указывается относительный путь -->
-    <source src="C:/Users/User/Telegram-prodgect/client/video_2025-08-25_00-03-06.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-</video>
-
   <!-- Главная страница -->
   <div id="main-page" class="main-page">
     <!-- Вкладки сверху -->
@@ -3758,10 +3752,10 @@
     </div>
   </div>
 
- <!-- Нижняя панель навигации -->
+<!-- Нижняя панель навигации -->
 <div class="bottom-nav">
   
-  <!-- СКЛАД -->
+  <!-- СКЛАД (теперь первая кнопка) -->
   <div class="nav-item" id="storage-nav-item">
     <div style="display: flex; flex-direction: column; align-items: center;">
       <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -3783,7 +3777,7 @@
     </div>
   </div>
 
-  <!-- КЛАД -->
+  <!-- КЛАД (вторая кнопка) -->
   <div class="nav-item" id="treasure-nav-item">
     <div style="display: flex; flex-direction: column; align-items: center;">
       <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
@@ -3802,8 +3796,8 @@
     </div>
   </div>
 
-  <!-- КАЮТА -->
-  <div class="nav-item" id="cabin-nav-item">
+  <!-- КАЮТА (теперь третья кнопка) -->
+  <div class="nav-item" id="cabinet-nav-item">
     <div style="display: flex; flex-direction: column; align-items: center;">
       <svg class="icon-glow" width="40" height="40" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" fill="none">
         <path d="M24 20 Q24 14 32 14 Q40 14 40 20" stroke="currentColor" stroke-width="2" fill="none" />
@@ -4291,6 +4285,13 @@
   </div>
 </div>
 
+<video id="myVideo" muted loop playsinline>
+    <!-- Источник указывается относительный путь -->
+    <source src="C:/Users/User/Telegram-prodgect/client/video_2025-08-25_00-03-06.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+
 
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
@@ -4723,7 +4724,7 @@ function updateActiveNav(activeItem) {
 }
 
 // Обработчики для навигации
-document.getElementById('cabin-nav-item').addEventListener('click', function(e) {
+document.getElementById('cabinet-nav-item').addEventListener('click', function(e) {
   e.preventDefault();
   showPage(cabinetPage);
   updateActiveNav(this);
